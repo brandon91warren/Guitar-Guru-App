@@ -1,0 +1,32 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS-specific
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/
+
+# Optional: build artifacts
+dist/
+build/
+
+# Coverage/testing
+coverage/
+
+# Optional: local database and debug files
+*.local
+*.sublime-project
+*.sublime-workspace
+
+# Render or deployment-specific
+render.yaml

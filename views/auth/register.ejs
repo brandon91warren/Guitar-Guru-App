@@ -1,0 +1,20 @@
+<%- include('../partials/header') %>
+
+<h2>Register</h2>
+
+<% if (messages.error_msg && messages.error_msg.length > 0) { %>
+  <% messages.error_msg.forEach(function(msg) { %>
+    <p class="error"><%= msg %></p>
+  <% }); %>
+<% } %>
+
+<form action="/auth/register" method="POST">
+  <label>Username: <input type="text" name="username" required /></label><br>
+  <label>Email: <input type="email" name="email" required /></label><br>
+  <label>Password: <input type="password" name="password" required /></label><br>
+  <button type="submit">Register</button>
+</form>
+
+<p>Already have an account? <a href="/auth/login">Login here</a></p>
+
+<%- include('../partials/footer') %>

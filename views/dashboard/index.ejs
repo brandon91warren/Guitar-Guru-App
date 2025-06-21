@@ -1,0 +1,7 @@
+<%- include('../partials/header') %>
+
+<h2>Welcome, <%= user && user.username ? user.username : 'Guest' %>!</h2>
+<p>Your email: <%= user && user.email ? user.email : 'Not logged in' %></p>
+<p><a href="/logs">View Practice Logs</a> | <a href="/lessons">Browse Lessons</a></p>
+
+<%- include('../partials/footer') %>

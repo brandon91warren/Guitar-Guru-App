@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+
+<h2>All Guitar Lessons</h2>
+<a href="/lessons/new">+ Add New Lesson</a>
+<ul>
+  <% lessons.forEach(lesson => { %>
+    <li>
+      <strong><%= lesson.title %></strong> - <%= lesson.difficulty %>
+      [<a href="/lessons/<%= lesson._id %>">View</a> |
+       <a href="/lessons/<%= lesson._id %>/edit">Edit</a> |
+       <form action="/lessons/<%= lesson._id %>?_method=DELETE" method="POST" style="display:inline">
+         <button type="submit">Delete</button>
+       </form>]
+    </li>
+  <% }) %>
+</ul>
+
+<%- include('../partials/footer') %>
