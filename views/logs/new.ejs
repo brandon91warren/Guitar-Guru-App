@@ -1,0 +1,23 @@
+<form method="POST" action="/logs<%= log ? '/' + log._id + '?_method=PUT' : '' %>">
+  <input 
+    type="date" 
+    name="date" 
+    value="<%= log && log.date ? log.date.toISOString().substring(0, 10) : '' %>" 
+    required
+  >
+  <input 
+    type="number" 
+    name="durationMinutes" 
+    value="<%= log ? log.durationMinutes : '' %>" 
+    placeholder="Duration in minutes" 
+    required
+  >
+  <input 
+    type="text" 
+    name="focus" 
+    value="<%= log ? log.focus : '' %>" 
+    placeholder="Practice Focus" 
+    required
+  >
+  <button type="submit"><%= log ? 'Update' : 'Create' %> Practice Log</button>
+</form>

@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+
+<h2>Practice Logs</h2>
+<a href="/logs/new">+ New Log</a>
+<ul>
+  <% logs.forEach(log => { %>
+    <li>
+      <%= log.date.toDateString() %> - <%= log.focus %> - <%= log.durationMinutes %> min
+      [<a href="/logs/<%= log._id %>/edit">Edit</a> |
+       <form method="POST" action="/logs/<%= log._id %>?_method=DELETE" style="display:inline">
+         <button type="submit">Delete</button>
+       </form>]
+    </li>
+  <% }) %>
+</ul>
+
+<%- include('../partials/footer') %>
