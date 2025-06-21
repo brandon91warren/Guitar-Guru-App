@@ -6,7 +6,7 @@ exports.index = async (req, res) => {
 };
 
 exports.newForm = (req, res) => {
-  res.render('lessons/new', { lesson: {} });
+  res.render('lessons/new', { lesson: null }); // pass null for create form
 };
 
 exports.create = async (req, res) => {
@@ -16,6 +16,7 @@ exports.create = async (req, res) => {
     req.flash('success_msg', 'Lesson created successfully');
     res.redirect('/lessons');
   } catch (err) {
+    console.error(err);
     req.flash('error_msg', 'Error creating lesson');
     res.redirect('/lessons/new');
   }
@@ -30,7 +31,7 @@ exports.show = async (req, res) => {
 exports.editForm = async (req, res) => {
   const lesson = await Lesson.findById(req.params.id);
   if (!lesson) return res.redirect('/lessons');
-  res.render('lessons/edit', { lesson });
+  res.render('lessons/new', { lesson }); // pass lesson for edit form
 };
 
 exports.update = async (req, res) => {
@@ -39,6 +40,7 @@ exports.update = async (req, res) => {
     req.flash('success_msg', 'Lesson updated successfully');
     res.redirect('/lessons');
   } catch (err) {
+    console.error(err);
     req.flash('error_msg', 'Error updating lesson');
     res.redirect(`/lessons/${req.params.id}/edit`);
   }
@@ -50,6 +52,7 @@ exports.delete = async (req, res) => {
     req.flash('success_msg', 'Lesson deleted');
     res.redirect('/lessons');
   } catch (err) {
+    console.error(err);
     req.flash('error_msg', 'Error deleting lesson');
     res.redirect('/lessons');
   }
