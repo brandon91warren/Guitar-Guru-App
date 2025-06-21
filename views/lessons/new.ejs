@@ -1,13 +1,31 @@
 <form method="POST" action="/lessons<%= lesson ? '/' + lesson._id + '?_method=PUT' : '' %>">
-  <input type="text" name="title" value="<%= lesson?.title || '' %>" placeholder="Title" required>
-  <textarea name="content" placeholder="Lesson Content"><%= lesson?.content || '' %></textarea>
+  <input 
+    type="text" 
+    name="title" 
+    value="<%= lesson ? lesson.title : '' %>" 
+    placeholder="Title" 
+    required
+  >
+  <textarea name="content" placeholder="Lesson Content"><%= lesson ? lesson.content : '' %></textarea>
   <select name="difficulty" required>
     <% ['Beginner', 'Intermediate', 'Advanced'].forEach(diff => { %>
-      <option value="<%= diff %>" <%= lesson?.difficulty === diff ? 'selected' : '' %>><%= diff %></option>
+      <option value="<%= diff %>" <%= lesson && lesson.difficulty === diff ? 'selected' : '' %>><%= diff %></option>
     <% }) %>
   </select>
-  <input type="url" name="videoUrl" value="<%= lesson?.videoUrl || '' %>" placeholder="Video URL">
-  <input type="text" name="tags" value="<%= lesson?.tags?.join(', ') || '' %>" placeholder="Tags (comma-separated)">
-  <label><input type="checkbox" name="isFree" <%= lesson?.isFree ? 'checked' : '' %>> Free</label>
+  <input 
+    type="url" 
+    name="videoUrl" 
+    value="<%= lesson ? lesson.videoUrl : '' %>" 
+    placeholder="Video URL"
+  >
+  <input 
+    type="text" 
+    name="tags" 
+    value="<%= lesson && lesson.tags ? lesson.tags.join(', ') : '' %>" 
+    placeholder="Tags (comma-separated)"
+  >
+  <label>
+    <input type="checkbox" name="isFree" <%= lesson && lesson.isFree ? 'checked' : '' %>> Free
+  </label>
   <button type="submit"><%= lesson ? 'Update' : 'Create' %> Lesson</button>
 </form>

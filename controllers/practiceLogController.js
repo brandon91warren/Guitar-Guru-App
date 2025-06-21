@@ -6,7 +6,7 @@ exports.index = async (req, res) => {
 };
 
 exports.newForm = (req, res) => {
-  res.render('logs/new', { log: {} });
+  res.render('logs/new', { log: null }); // pass null for create form
 };
 
 exports.create = async (req, res) => {
@@ -16,6 +16,7 @@ exports.create = async (req, res) => {
     req.flash('success_msg', 'Practice log created');
     res.redirect('/logs');
   } catch (err) {
+    console.error(err);
     req.flash('error_msg', 'Failed to create log');
     res.redirect('/logs/new');
   }
@@ -24,7 +25,7 @@ exports.create = async (req, res) => {
 exports.editForm = async (req, res) => {
   const log = await PracticeLog.findOne({ _id: req.params.id, userId: req.user._id });
   if (!log) return res.redirect('/logs');
-  res.render('logs/edit', { log });
+  res.render('logs/new', { log }); // pass log for edit form
 };
 
 exports.update = async (req, res) => {
@@ -33,6 +34,7 @@ exports.update = async (req, res) => {
     req.flash('success_msg', 'Log updated');
     res.redirect('/logs');
   } catch (err) {
+    console.error(err);
     req.flash('error_msg', 'Update failed');
     res.redirect(`/logs/${req.params.id}/edit`);
   }
@@ -44,6 +46,7 @@ exports.delete = async (req, res) => {
     req.flash('success_msg', 'Log deleted');
     res.redirect('/logs');
   } catch (err) {
+    console.error(err);
     req.flash('error_msg', 'Delete failed');
     res.redirect('/logs');
   }
